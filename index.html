@@ -27,6 +27,13 @@
       color:#222;
       padding:20px;
       transition:0.3s;
+      -webkit-touch-callout:none;
+    }
+
+    img{
+      -webkit-user-drag:none;
+      user-select:none;
+      pointer-events:none;
     }
 
     .container{
@@ -197,8 +204,6 @@
       transform:scale(1.1);
     }
 
-    /* Nút đổi theme */
-
     #theme-toggle{
       position:fixed;
       top:20px;
@@ -219,8 +224,6 @@
     #theme-toggle:hover{
       transform:scale(1.1);
     }
-
-    /* Dark mode */
 
     body.dark{
       background:#111;
@@ -416,6 +419,7 @@
 </audio>
 
 <script>
+
 document.addEventListener("click", function () {
   document.getElementById("music").play();
 }, { once:true });
@@ -431,6 +435,52 @@ toggle.onclick = () => {
     toggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
   }
 };
+
+/* Chặn chuột phải */
+document.addEventListener("contextmenu", function(e){
+  e.preventDefault();
+});
+
+/* Chặn copy */
+document.addEventListener("copy", function(e){
+  e.preventDefault();
+});
+
+/* Chặn chọn văn bản */
+document.addEventListener("selectstart", function(e){
+  e.preventDefault();
+});
+
+/* Chặn kéo ảnh */
+document.addEventListener("dragstart", function(e){
+  e.preventDefault();
+});
+
+/* Chặn phím tắt */
+document.addEventListener("keydown", function(e){
+
+  if(e.key === "F12"){
+    e.preventDefault();
+  }
+
+  if(e.ctrlKey && e.key.toLowerCase() === "u"){
+    e.preventDefault();
+  }
+
+  if(e.ctrlKey && e.key.toLowerCase() === "c"){
+    e.preventDefault();
+  }
+
+  if(e.ctrlKey && e.key.toLowerCase() === "s"){
+    e.preventDefault();
+  }
+
+  if(e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "i"){
+    e.preventDefault();
+  }
+
+});
+
 </script>
 
 </body>
